@@ -1,0 +1,13 @@
+- name: Wayback Machine
+  # You may pin to the exact commit or the version.
+  # uses: JamieMagee/wayback@ef7a66c6d7c95349159ac6e7ab9d5637bdeebdfa
+  uses: JamieMagee/wayback@v1.3.28
+  with: https://softcomet333.github.io
+    # URL to submit to the wayback machine
+    url: true
+    # If true, save HTTP errors as well
+    saveErrors: true
+    # If true, save all links to external sites
+    saveOutlinks: true
+    # If true, save a screenshot of the site
+    saveScreenshot: true
