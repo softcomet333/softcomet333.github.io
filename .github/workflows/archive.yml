@@ -1,21 +1,59 @@
-name: Archive website to Wayback Machine
+name: Wayback Machine Auto Archive
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
   schedule:
-    - cron: "17 3 * * 1"
+    - cron: "30 17 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wayback-archive
+  cancel-in-progress: false
 
 jobs:
   archive:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Save website to Wayback Machine
-        uses: JamieMagee/wayback@v1.3.28
-        with:
-          url: https://softcomet333.github.io/
-          saveErrors: true
-          saveOutlinks: true
-          saveScreenshot: true
+      - name: Submit pages to Wayback Machine
+        env:
+          IA_ACCESS_KEY: ${{ secrets.IA_ACCESS_KEY }}
+          IA_SECRET_KEY: ${{ secrets.IA_SECRET_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ -z "$IA_ACCESS_KEY" || -z "$IA_SECRET_KEY" ]]; then
+            echo "::error::Missing Internet Archive API credentials."
+            exit 1
+          fi
+
+          urls=(
+            "https://softcomet333.github.io/"
+            "https://softcomet333.github.io/archive.html"
+            "https://softcomet333.github.io/notes/2026-10-02.html"
+            "https://softcomet333.github.io/notes/2026-10-04.html"
+          )
+
+          for url in "${urls[@]}"; do
+            echo "Submitting: $url"
+
+            if curl --fail-with-body --silent --show-error \
+              --request POST \
+              --header "Accept: application/json" \
+              --header "Authorization: LOW ${IA_ACCESS_KEY}:${IA_SECRET_KEY}" \
+              --data-urlencode "url=${url}" \
+              "https://web.archive.org/save/"; then
+              echo
+              echo "Request accepted: $url"
+            else
+              echo
+              echo "::error::Failed to submit $url"
+              exit 1
+            fi
+
+            # Avoid sending requests too rapidly.
+            sleep 10
+          done
