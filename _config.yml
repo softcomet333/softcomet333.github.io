@@ -1,3 +1,20 @@
 title: softcomet333
 description: 随便存一些东西.
+url: "https://softcomet333.github.io"
+baseurl: ""
+
 markdown: kramdown
+permalink: pretty
+
+collections:
+  archive:
+    output: true
+    sort_by: date
+    permalink: /archive/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: archive
+    values:
+      layout: default

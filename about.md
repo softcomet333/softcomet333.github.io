@@ -4,13 +4,12 @@ title: About
 permalink: /about/
 ---
 
-# 关于
+# 关于 softcomet333
 
-这是一个小小的个人站。
+其实我忘了起这个名字的原因 hh
 
-随便存一些东西。
+这是一个小小的个人站
 
-## External links
+随便存一些东西
 
-- [Internet Archive](https://archive.org/)
-- [GitHub](https://github.com/)
+至于这个名字的来历，也许哪天会想起来吧

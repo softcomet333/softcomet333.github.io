@@ -4,32 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ page.title | default: site.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+    <title>{% raw %}{{ page.title | default: site.title | escape }}{% endraw %}</title>
+
+    <meta name="description" content="{% raw %}{{ page.description | default: site.description | escape }}{% endraw %}">
+
+    <link rel="stylesheet" href="{% raw %}{{ '/assets/css/style.css' | relative_url }}{% endraw %}">
 </head>
 
 <body>
     <main class="container">
-        <header>
-            <a class="site-title" href="{{ '/' | relative_url }}">
-                {{ site.title }}
+        <header class="site-header">
+            <a class="site-title" href="{% raw %}{{ '/' | relative_url }}{% endraw %}">
+                {% raw %}{{ site.title }}{% endraw %}
             </a>
-            <nav>
-                <a href="{{ '/about/' | relative_url }}">about</a>
-                <a href="{{ '/archive/' | relative_url }}">archive</a>
-                <a href="{{ '/links/' | relative_url }}">links</a>
-            </nav>
+            <span class="site-status">PERSONAL ARCHIVE / ONLINE</span>
         </header>
 
         <hr>
 
         <article>
-            {{ content }}
+            {% raw %}{{ content }}{% endraw %}
         </article>
 
         <footer>
             <hr>
-            <p>{{ site.description }}</p>
+            <p>softcomet333 · EST. UNKNOWN</p>
         </footer>
     </main>
 </body>

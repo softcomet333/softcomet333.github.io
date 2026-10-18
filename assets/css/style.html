@@ -1,9 +1,10 @@
 :root {
---background: #f5f2e9;
---text: #292a28;
---muted: #77766d;
---line: #c9c4b7;
---link: #526c73;
+--bg: #f3f0e7;
+--text: #282a29;
+--muted: #77786f;
+--line: #cbc7bb;
+--link: #536e75;
+--panel: #eae6dc;
 }
 
 * {
@@ -12,7 +13,7 @@ box-sizing: border-box;
 
 body {
 margin: 0;
-background: var(--background);
+background: var(--bg);
 color: var(--text);
 font-family: Georgia, "Noto Serif SC", serif;
 font-size: 16px;
@@ -20,32 +21,39 @@ line-height: 1.8;
 }
 
 .container {
-width: min(680px, calc(100% - 40px));
-margin: 64px auto;
+width: min(720px, calc(100% - 36px));
+margin: 54px auto;
 }
 
-header {
+.site-header {
 display: flex;
-align-items: center;
 justify-content: space-between;
+align-items: baseline;
 flex-wrap: wrap;
-gap: 12px;
+gap: 10px;
 }
 
 .site-title {
 color: var(--text);
-font-size: 1.3rem;
+font-size: 1.35rem;
 font-weight: bold;
 text-decoration: none;
 }
 
-nav {
-display: flex;
-gap: 16px;
+.site-status {
+color: var(--muted);
+font-family: monospace;
+font-size: 0.72rem;
+letter-spacing: 0.06em;
+}
+
+h1, h2, h3 {
+line-height: 1.4;
 }
 
 a {
 color: var(--link);
+overflow-wrap: anywhere;
 }
 
 a:hover {
@@ -55,22 +63,108 @@ text-decoration-thickness: 2px;
 hr {
 border: 0;
 border-top: 1px solid var(--line);
-margin: 28px 0;
+margin: 26px 0;
+}
+
+.intro {
+margin: 28px 0 36px;
+}
+
+.intro p {
+margin: 8px 0;
+}
+
+.section-label {
+margin-bottom: 12px;
+font-family: monospace;
+font-size: 0.8rem;
+letter-spacing: 0.08em;
+color: var(--muted);
+}
+
+/* 可独立滚动的档案列表 */
+.archive-list {
+max-height: 320px;
+overflow-y: auto;
+overscroll-behavior: contain;
+border-top: 1px solid var(--line);
+border-bottom: 1px solid var(--line);
+scrollbar-width: thin;
+scrollbar-color: var(--line) transparent;
+}
+
+.archive-item {
+display: block;
+padding: 14px 10px;
+border-bottom: 1px solid var(--line);
+color: var(--text);
+text-decoration: none;
+}
+
+.archive-item:last-child {
+border-bottom: 0;
+}
+
+.archive-item:hover {
+background: var(--panel);
+}
+
+.archive-title {
+display: block;
+font-weight: bold;
+}
+
+.archive-meta {
+display: block;
+margin-top: 3px;
+color: var(--muted);
+font-family: monospace;
+font-size: 0.78rem;
+}
+
+.archive-description {
+display: block;
+margin-top: 4px;
+color: var(--muted);
+font-size: 0.9rem;
+}
+
+article img {
+max-width: 100%;
+height: auto;
+}
+
+article pre {
+overflow-x: auto;
+padding: 14px;
+background: var(--panel);
+}
+
+article blockquote {
+margin-left: 0;
+padding-left: 16px;
+border-left: 2px solid var(--line);
+color: var(--muted);
 }
 
 footer {
-margin-top: 56px;
+margin-top: 48px;
 color: var(--muted);
-font-size: 0.85rem;
+font-family: monospace;
+font-size: 0.75rem;
 }
 
 @media (max-width: 480px) {
 .container {
-margin: 32px auto;
+margin: 28px auto;
 }
 
-header {
+.site-header {
 align-items: flex-start;
 flex-direction: column;
+}
+
+.archive-list {
+max-height: 280px;
 }
 }
