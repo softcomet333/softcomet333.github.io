@@ -4,19 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>{% raw %}{{ page.title | default: site.title | escape }}{% endraw %}</title>
-
-    <meta name="description" content="{% raw %}{{ page.description | default: site.description | escape }}{% endraw %}">
-
-    <link rel="stylesheet" href="{% raw %}{{ '/assets/css/style.css' | relative_url }}{% endraw %}">
+    <title>{{ page.title | default: site.title | escape }}</title>
+    <meta name="description" content="{{ page.description | default: site.description | escape }}">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 
 <body>
     <main class="container">
         <header class="site-header">
-            <a class="site-title" href="{% raw %}{{ '/' | relative_url }}{% endraw %}">
-                {% raw %}{{ site.title }}{% endraw %}
+            <a class="site-title" href="{{ '/' | relative_url }}">
+                {{ site.title }}
             </a>
             <span class="site-status">PERSONAL ARCHIVE / ONLINE</span>
         </header>
@@ -24,7 +21,7 @@
         <hr>
 
         <article>
-            {% raw %}{{ content }}{% endraw %}
+            {{ content }}
         </article>
 
         <footer>
