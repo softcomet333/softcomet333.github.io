@@ -169,3 +169,60 @@ flex-direction: column;
 max-height: 280px;
 }
 }
+.directory-heading {
+    margin: 28px 0 18px;
+    font-family: monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.directory {
+    width: 100%;
+    font-size: 0.95rem;
+}
+
+.file-row {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr) 110px;
+    align-items: center;
+    gap: 8px;
+    min-height: 34px;
+    padding: 5px 8px;
+    color: #454545;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.file-row:hover {
+    background: #e8e6e2;
+}
+
+.file-icon {
+    font-size: 0.95rem;
+}
+
+.file-name {
+    overflow-wrap: anywhere;
+}
+
+.file-kind {
+    color: #888;
+    font-size: 0.8rem;
+    text-align: left;
+}
+
+.directory-children {
+    margin-left: 26px;
+    border-left: 1px solid #d8d5ce;
+    padding-left: 8px;
+}
+
+@media (max-width: 480px) {
+    .file-row {
+        grid-template-columns: 24px minmax(0, 1fr);
+    }
+
+    .file-kind {
+        display: none;
+    }
+}
